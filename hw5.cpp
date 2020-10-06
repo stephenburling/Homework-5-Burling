@@ -17,6 +17,7 @@ void BubbleSort(std::vector<std::string>& vec) {
     }
   }
 }
+
 static void insertionSortRecursiveHelper(std::vector<int>& vec, int size)
 {
     if (size <= 1) {
@@ -40,14 +41,57 @@ static void insertionSortRecursiveHelper(std::vector<int>& vec, int size)
 void InsertionSort(std::vector<int>& v) {
 
     insertionSortRecursiveHelper(v, v.size());
-    
-}
-
-
-static void MergeSortHelper(std::vector<std::string>& vec, int left_bound, int right_bound) {
 
 }
 
 void MergeSort(std::vector<std::string>& vec) {
 
+    if (vec.size() == 1) {
+        return;
+    }
+        int last = vec.size();
+        int middle = last / 2;
+
+        auto left = vec.begin();
+        auto midpoint = vec.begin() + middle;
+        auto right = vec.end();
+
+        std::vector<std::string> leftVec(left,midpoint);
+        std::vector<std::string> rightVec(midpoint, right);
+
+    if (vec.size() > 2) {
+        MergeSort(leftVec);
+        MergeSort(rightVec);
+    }
+        int leftCounter = 0;
+        int rightCounter = 0;
+        int vecCounter = 0;
+
+        while (leftCounter < leftVec.size() && rightCounter < rightVec.size()) {
+            if (leftVec[leftCounter].compare(rightVec[rightCounter]) < 0) {
+                vec[vecCounter] = leftVec[leftCounter];
+                  leftCounter++;
+            }else if (leftVec[leftCounter].compare(rightVec[rightCounter]) == 0) {
+                vec[vecCounter] = leftVec[leftCounter];
+                  leftCounter++;
+                  vecCounter++;
+                vec[vecCounter] = rightVec[rightCounter];
+                  rightCounter++;
+            }
+            else {
+                vec[vecCounter] = rightVec[rightCounter];
+                  rightCounter++;
+            }
+                  vecCounter++;
+        }
+        while (leftCounter < leftVec.size()) {
+            vec[vecCounter] = leftVec[leftCounter];
+              leftCounter++;
+              vecCounter++;
+        }
+        while (rightCounter < rightVec.size()) {
+            vec[vecCounter] = rightVec[rightCounter];
+              rightCounter++;
+              vecCounter++;
+        }
 }
