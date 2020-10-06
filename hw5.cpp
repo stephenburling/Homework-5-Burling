@@ -55,39 +55,39 @@ MergeSort
 void BubbleSort(std::vector<std::string>& v) {
   bool x = true;
   if (v.size() == 0) {
-      x = false;
+    x = false;
   }
   while (x == true) {
     x = false;
     for (int i = 0; i < (v.size()-1); i++) {
       if (v[i].compare(v[i + 1]) > 0) {
-      swap(v[i], v[i+1]);
-      x = true;
+        swap(v[i], v[i+1]);
+        x = true;
       }
     }
   }
 }
 
 static void InsertionSortRecursiveHelper(std::vector<int>& v, int size) {
-    if (size <= 1) {
-        return;
-    }
+  if (size <= 1) {
+    return;
+  }
 
-    InsertionSortRecursiveHelper(v, size - 1);
+  InsertionSortRecursiveHelper(v, size - 1);
 
-    int last_element = v[size - 1];
-    int index = size - 2;
+  int last_element = v[size - 1];
+  int index = size - 2;
 
-    while (index >= 0 && v[index] > last_element){
-        v[index + 1] = v[index];
-        index--;
-    }
+  while (index >= 0 && v[index] > last_element){
+    v[index + 1] = v[index];
+    index--;
+  }
 
-    v[index + 1] = last_element;
+  v[index + 1] = last_element;
 }
 
 void InsertionSort(std::vector<int>& v) {
-    InsertionSortRecursiveHelper(v, v.size());
+  InsertionSortRecursiveHelper(v, v.size());
 }
 
 void MergeSort(std::vector<std::string>& v) {
